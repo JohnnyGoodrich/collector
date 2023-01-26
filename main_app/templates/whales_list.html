@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% comment %} for head title tags and helping us with SEO {% endcomment %}
+{% block title %}Whale{% endblock  %}
+
+{% block content %}
+
+<h1 class="title pt-5">Whales</h1>
+<div class="gallery">
+  {% for whale in whales %}
+  <a href="">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{whale.image}}" alt="{{whale.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{whale.name}}</p>
+      </div>
+    </div>
+  </a>
+	{% empty %}
+  <article class="message">
+    <div class="message-header">
+      <p>No Whales Available</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}
