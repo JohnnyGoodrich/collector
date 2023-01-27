@@ -1,18 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% comment %} for head title tags and helping us with SEO {% endcomment %}
-{% block title %}Whale{% endblock  %}
+<h1 class="title">{{header}}</h1>
 
-{% block content %}
-
-<h1 class="title pt-5">Whales</h1>
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <!--  Our input will search by name of artist  -->
+      <input class="input" type="text" name="name" placeholder="name" />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <!--  This anchor tag will redirect back to artist list without a query param -->
+  <a class="button is-dark" href="{% url 'whales_list' %}">Clear Search</a>
+  <a class="button is-dark" href="{% url 'whales_create' %}">Add Whale</a>
+</form>
 <div class="gallery">
   {% for whale in whales %}
-  <a href="">
+  <a href="{% url 'whale_detail' whale.pk %}">
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">
-          <img src="{{whale.image}}" alt="{{whale.name}}" />
+          <img src="{{whale.img}}" alt="{{whale.name}}" />
         </figure>
       </div>
       <div class="card-header">
@@ -20,12 +30,7 @@
       </div>
     </div>
   </a>
-	{% empty %}
-  <article class="message">
-    <div class="message-header">
-      <p>No Whales Available</p>
-    </div>
-  </article>
   {% endfor %}
 </div>
+
 {% endblock %}
