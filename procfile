@@ -1,1 +1,1 @@
-web: gunicorn whale-collector.wsgi --log-file -
+web: gunicorn collector_project.wsgi --log-file -
