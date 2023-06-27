@@ -1,1 +1,1 @@
-web: gunicorn collector.wsgi
+web: gunicorn --pythonpath collector collector_project.wsgi
